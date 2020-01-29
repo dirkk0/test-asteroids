@@ -3,16 +3,34 @@
 const s = function(p5) {
   let asteroids = [];
   //   let a = 1;
-  let numAsteroids = 1;
+  let numAsteroids = 10;
   let canvasWidth = 400;
 
   let ship;
 
+  p5.mousePressed = function (event) {
+    console.log(event)    
+  }
+
+  // p5.touchStarted = function (event) {
+  //   console.log(p5.touches[0].x, p5.touches[0].y )
+  //   console.log(event.offsetX, event.offsetX)
+
+  //   return false
+  // }
+
+  // p5.touchEnded = function () {
+  //   // if (p5.keyIsDown(p5.LEFT_ARROW)) {
+  //     ship.vx -= 0.1;
+  //   // }
+  //   return false
+  // }
+
   function Thing(s, t) {
     this.x = s;
     this.y = t;
-    this.vx = 0 // 2 * p5.random() - 1;
-    this.vy = 0 // 2 * p5.random() - 1;
+    this.vx = 2 * p5.random() - 1;
+    this.vy = 2 * p5.random() - 1;
     this.radius = 20 // 30 * p5.random() + 10;
     this.color = p5.color(
       p5.random() * 255,
@@ -60,16 +78,16 @@ const s = function(p5) {
   //   let b = new Thing(20, 20);
 
   for (let i = 0; i < numAsteroids; i++) {
-    let temp = new Thing(200, 200);
-    temp.radius = 50;
-    // let temp = new Thing(canvasWidth * p5.random(), canvasWidth * p5.random());
+    let temp = new Thing(canvasWidth * p5.random(), canvasWidth * p5.random());
+    // let temp = new Thing(200, 200);
+    temp.radius = 20;
     console.log(temp);
     asteroids.push(temp);
   }
-  console.log(asteroids);
+  // console.log(asteroids);
 
-  // ship = new Thing(canvasWidth * p5.random(), canvasWidth * p5.random());
-  ship = new Thing(200, 200);
+  ship = new Thing(canvasWidth * p5.random(), canvasWidth * p5.random());
+  // ship = new Thing(200, 200);
   ship.shapeString = "bla";
   ship.vx = 0;
   ship.vy = 0;
@@ -99,6 +117,7 @@ const s = function(p5) {
       ship.vy += 0.1;
     }
 
+
     for (let i = 0; i < numAsteroids; i++) {
       // console.log(asteroids[0].radius)
       asteroids[i].draw();
@@ -106,10 +125,11 @@ const s = function(p5) {
       let dy = asteroids[i].y - ship.y;
       let distance = Math.sqrt(dx * dx + dy * dy);
       if (distance < (asteroids[i].radius/2 + ship.radius/2)) {
-        console.log("ouch", distance);
+        // console.log("ouch", distance);
       }
     }
     ship.draw();
   };
+}
 
 let myp5 = new p5(s);
