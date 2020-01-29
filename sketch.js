@@ -3,7 +3,7 @@
 const s = function(p5) {
   let asteroids = [];
   //   let a = 1;
-  let numAsteroids = 1;
+  let numAsteroids = 10;
   let canvasWidth = 400;
 
   let ship;
@@ -60,16 +60,16 @@ const s = function(p5) {
   //   let b = new Thing(20, 20);
 
   for (let i = 0; i < numAsteroids; i++) {
-    let temp = new Thing(200, 200);
-    temp.radius = 50;
-    // let temp = new Thing(canvasWidth * p5.random(), canvasWidth * p5.random());
+    let temp = new Thing(canvasWidth * p5.random(), canvasWidth * p5.random());
+    // let temp = new Thing(200, 200);
+    temp.radius = 20;
     console.log(temp);
     asteroids.push(temp);
   }
   console.log(asteroids);
 
-  // ship = new Thing(canvasWidth * p5.random(), canvasWidth * p5.random());
-  ship = new Thing(200, 200);
+  ship = new Thing(canvasWidth * p5.random(), canvasWidth * p5.random());
+  // ship = new Thing(200, 200);
   ship.shapeString = "bla";
   ship.vx = 0;
   ship.vy = 0;
@@ -111,5 +111,5 @@ const s = function(p5) {
     }
     ship.draw();
   };
-
+}
 let myp5 = new p5(s);
